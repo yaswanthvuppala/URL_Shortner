@@ -34,7 +34,7 @@ graph TD
     API -->|4. Return Short URL| Client
 
     %% Redirect Flow (Cache Hit)
-    Client -->|5. GET /{short_code}| API
+    Client -->|"5. GET /{short_code}"| API
     API -->|6. Query cache| RedisCache
     RedisCache -->|7. Return Cached URL| API
     API -->|8. Async click increment| SQLiteDB
