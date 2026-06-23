@@ -117,26 +117,26 @@ The server will start on **`http://localhost:8000`**.
 
 ### 1. Web Interface
 Once the server is running, visit the root URL to access the minimalist, premium web UI:
-- **Web UI**: [http://localhost:8000/](http://localhost:8000/)
+- **Web UI**: [https://url-shortner-lov1.onrender.com/](https://url-shortner-lov1.onrender.com/)
 
 ### 2. API Documentation
 FastAPI automatically generates interactive API documentation. You can access it here:
-- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
-- **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
+- **Swagger UI**: [https://url-shortner-lov1.onrender.com/docs](https://url-shortner-lov1.onrender.com/docs)
+- **ReDoc**: [https://url-shortner-lov1.onrender.com/redoc](https://url-shortner-lov1.onrender.com/redoc)
 
 ### 3. Testing via Terminal
-You can test the API directly from your terminal. Replace `localhost:8000` with your production URL if deployed.
+You can test the API directly from your terminal using your live Render URL.
 
 **For Linux/macOS/Git Bash (`curl`):**
 ```bash
-curl -X POST http://localhost:8000/shorten \
+curl -X POST https://url-shortner-lov1.onrender.com/shorten \
   -H "Content-Type: application/json" \
   -d '{"long_url": "https://github.com"}'
 ```
 
 **For Windows PowerShell (`Invoke-RestMethod`):**
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8000/shorten" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"long_url": "https://github.com"}'
+Invoke-RestMethod -Uri "https://url-shortner-lov1.onrender.com/shorten" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"long_url": "https://github.com"}'
 ```
 
 ### Endpoints
@@ -157,7 +157,7 @@ Invoke-RestMethod -Uri "http://localhost:8000/shorten" -Method POST -Headers @{"
 - **Response** (Status Code `201 Created`):
   ```json
   {
-    "short_url": "http://localhost:8000/aB3xD2"
+    "short_url": "https://url-shortner-lov1.onrender.com/aB3xD2"
   }
   ```
 
