@@ -3,7 +3,7 @@ import string
 import random
 import redis
 from fastapi import FastAPI, Depends, HTTPException, status
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, FileResponse
 from sqlalchemy.orm import Session
 from pydantic import BaseModel, HttpUrl
 
@@ -17,7 +17,7 @@ app = FastAPI(title="URL Shortener API")
 
 @app.get("/")
 def read_root():
-    return RedirectResponse(url="/docs")
+    return FileResponse("static/index.html")
 
 # Initialize Redis connection
 REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
