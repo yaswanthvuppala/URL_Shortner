@@ -3,3 +3,4 @@ uvicorn[standard]
 sqlalchemy
 redis
 pydantic
+psycopg2-binary

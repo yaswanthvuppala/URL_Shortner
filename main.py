@@ -1,3 +1,4 @@
+import os
 import string
 import random
 import redis
@@ -19,8 +20,8 @@ def read_root():
     return RedirectResponse(url="/docs")
 
 # Initialize Redis connection
-# docker-compose runs redis on localhost:6379 by default
-redis_client = redis.Redis(host="localhost", port=6379, db=0, decode_responses=True)
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+redis_client = redis.from_url(REDIS_URL, decode_responses=True)
 
 class URLCreate(BaseModel):
     long_url: HttpUrl
@@ -54,7 +55,8 @@ def shorten_url(url_data: URLCreate, db: Session = Depends(get_db)):
     # Cache in Redis with 24-hour TTL (86400 seconds)
     redis_client.setex(short_code, 86400, db_mapping.long_url)
 
-    return {"short_url": f"http://localhost:8000/{short_code}"}
+    BASE_URL = os.getenv("BASE_URL", "http://localhost:8000")
+    return {"short_url": f"{BASE_URL}/{short_code}"}
 
 @app.get("/{short_code}")
 def redirect_to_long_url(short_code: str, db: Session = Depends(get_db)):
